@@ -39,7 +39,7 @@ const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-800 to-indigo-900 relative border-t border-t-white border-b border-b-white">
+    <div className="sm:max-w-4xl">
       {showConfetti && (
         <Confetti
           width={window.innerWidth}
@@ -50,12 +50,13 @@ const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
         />
       )}
 
-      <div className="flex flex-col items-center">
-        <div className="flex justify-center">
-          <h1 className="text-white font-bold text-4xl sm:text-7xl text-center">
-            Rock Paper Scissors
-          </h1>
-        </div>
+      <div className="flex flex-col justify-center items-center px-4">
+        <h1 className="text-white font-bold text-4xl sm:text-7xl text-center my-6 sm:mt-40">
+          RpsBattle
+        </h1>
+        <p className="text-white sm:text-3xl">
+          Not you regular Rock Paper Scissors
+        </p>
         <div className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-10 space-y-4 sm:space-y-0 sm:space-x-4">
           <div>
             <button

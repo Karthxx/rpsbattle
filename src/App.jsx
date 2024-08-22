@@ -7,7 +7,9 @@ function App() {
     <>
       <div className="bg-gradient-to-r from-blue-800 to-indigo-900">
         <Navbar />
-        <Game />
+        <section className="h-screen flex justify-center border-t border-t-white border-b border-b-white">
+          <Game />
+        </section>
         <Footer />
       </div>
     </>
