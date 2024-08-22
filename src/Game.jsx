@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Spinner from "./spinner";
+import Spinner from "./Spinner";
 import Result from "./Result";
 
 const Game = () => {
