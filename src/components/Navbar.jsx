@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase"; // Ensure the path is correct
+import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import logo from "../assets/rock-hand.svg";
 
@@ -12,7 +12,6 @@ const Navbar = () => {
       setUser(currentUser);
     });
 
-    // Cleanup the listener on component unmount
     return () => unsubscribe();
   }, []);
 
@@ -37,7 +36,7 @@ const Navbar = () => {
           {user ? (
             <button
               onClick={handleLogout}
-              className="text-lg font-bold text-white"
+              className="text-lg font-bold text-white ml-2"
             >
               Logout
             </button>
