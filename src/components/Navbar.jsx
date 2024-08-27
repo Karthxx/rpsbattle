@@ -44,12 +44,13 @@ const Navbar = () => {
               >
                 Profile
               </Link>
-              <button
+              <Link
                 onClick={handleLogout}
+                to="/"
                 className="text-lg font-bold text-white mx-2"
               >
                 Logout
-              </button>
+              </Link>
             </div>
           ) : (
             <>
