@@ -58,18 +58,20 @@ const Profile = () => {
 
   return (
     <div className="profile-container max-w-lg mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Profile</h1>
+      <h1 className="text-2xl font-bold mb-4 text-white">Profile</h1>
       {user && (
         <>
-          <p className="text-lg mb-2">
+          <p className="text-lg mb-2 text-white">
             <strong>Username:</strong> {profileData.username}
           </p>
-          <p className="text-lg mb-4">
+          <p className="text-lg mb-4 text-white">
             <strong>Wins:</strong> {profileData.wins || 0} |{" "}
             <strong>Losses:</strong> {profileData.losses || 0}
           </p>
 
-          <h2 className="text-xl font-semibold mb-2">Recent Games</h2>
+          <h2 className="text-xl font-semibold mb-2 text-white">
+            Recent Games
+          </h2>
           <ul className="space-y-2">
             {gameHistory.map((game, index) => (
               <li

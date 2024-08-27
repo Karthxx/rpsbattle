@@ -13,7 +13,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       await signup(email, password, username);
-      navigate("/profile");
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }
