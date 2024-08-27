@@ -6,7 +6,7 @@ const Spinner = ({ onChoice }) => {
           RpsBattle
         </h1>
         <p className="text-white sm:text-3xl">
-          Not you regular Rock Paper Scissors
+          Not your regular Rock Paper Scissors
         </p>
         <div className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-10 space-y-4 sm:space-y-0 sm:space-x-4">
           <div>
