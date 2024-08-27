@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
-
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const { signup } = useAuth();
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await signup(email, password);
-      navigate("/");
+      await signup(email, password, username);
+      navigate("/profile");
     } catch (err) {
       setError(err.message);
     }
@@ -24,6 +24,13 @@ const Signup = () => {
       <form onSubmit={handleSignup} className="bg-white p-6 rounded">
         <h2 className="text-2xl mb-4">Signup</h2>
         {error && <p className="text-red-500">{error}</p>}
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="mb-4 p-2 w-full border"
+        />
         <input
           type="email"
           placeholder="Email"

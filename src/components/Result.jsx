@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Confetti from "react-confetti";
+import { doc, updateDoc, arrayUnion, increment } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
   const [showConfetti, setShowConfetti] = useState(false);
+  const hasRecordedRef = useRef(false); // Ref to track if result has been recorded
 
   const getWinner = () => {
     const rules = {
@@ -21,7 +24,6 @@ const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
   useEffect(() => {
     if (result === "user") {
       setShowConfetti(true);
-
       const timer = setTimeout(() => {
         setShowConfetti(false);
       }, 5000);
@@ -29,6 +31,45 @@ const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
       return () => clearTimeout(timer);
     }
   }, [result]);
+
+  useEffect(() => {
+    const recordGameResult = async () => {
+      const user = auth.currentUser;
+      if (!user || hasRecordedRef.current) return; // Check if result is already recorded
+
+      const userDocRef = doc(db, "users", user.uid);
+
+      const gameResult = {
+        userChoice,
+        computerChoice,
+        result:
+          result === "user" ? "Win" : result === "computer" ? "Loss" : "Draw",
+        timestamp: new Date(),
+      };
+
+      const updateData = {
+        gameHistory: arrayUnion(gameResult),
+      };
+
+      if (result === "user") {
+        updateData.wins = increment(1);
+      } else if (result === "computer") {
+        updateData.losses = increment(1);
+      }
+
+      try {
+        await updateDoc(userDocRef, updateData);
+        hasRecordedRef.current = true; // Mark the result as recorded
+      } catch (error) {
+        console.error("Error updating document: ", error);
+      }
+    };
+
+    // Ensure the result is recorded only once
+    if (result && !hasRecordedRef.current) {
+      recordGameResult();
+    }
+  }, [result, userChoice, computerChoice]); // Depend on result and choices
 
   const getBorderColor = (choice, player) => {
     if (result === "draw") return "border-gray-500";
@@ -55,7 +96,7 @@ const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
           RpsBattle
         </h1>
         <p className="text-white sm:text-3xl">
-          Not you regular Rock Paper Scissors
+          Not your regular Rock Paper Scissors
         </p>
         <div className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-10 space-y-4 sm:space-y-0 sm:space-x-4">
           <div>
@@ -74,7 +115,7 @@ const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
           </div>
           <div>
             <button
-              className={`text-3xl sm:text-4xl w-64 sm:w-40 h-40 sm:h-64 mx-2 sm:mx-6 border bg-gradient-to-r from-blue-800 to-indigo-900 rounded  ${getBorderColor(
+              className={`text-3xl sm:text-4xl w-64 sm:w-40 h-40 sm:h-64 mx-2 sm:mx-6 border bg-gradient-to-r from-blue-800 to-indigo-900 rounded ${getBorderColor(
                 computerChoice,
                 "computer"
               )}`}

@@ -30,16 +30,27 @@ const Navbar = () => {
       <div className="w-full flex items-center justify-between">
         <div className="flex flex-row items-center">
           <img src={logo} alt="Rock Hand Logo" className="w-7" />
-          <p className="text-lg font-bold text-white">RpsBattle.io</p>
+          <a href="/" className="text-lg font-bold text-white">
+            RpsBattle.io
+          </a>
         </div>
         <div>
           {user ? (
-            <button
-              onClick={handleLogout}
-              className="text-lg font-bold text-white ml-2"
-            >
-              Logout
-            </button>
+            <div>
+              <Link
+                to="/profile"
+                href=""
+                className="text-lg font-bold text-white mx-2"
+              >
+                Profile
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-lg font-bold text-white mx-2"
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <>
               <Link to="/login" className="text-lg font-bold text-white mx-2">

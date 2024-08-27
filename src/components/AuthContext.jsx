@@ -1,32 +1,38 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import { createContext, useContext, useEffect, useState } from "react";
+import { auth, db } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
+export function useAuth() {
   return useContext(AuthContext);
-};
+}
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+export function AuthProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
+  const signup = async (email, password, username) => {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    // Save the user to Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      username: username,
+      email: user.email,
+      wins: 0,
+      losses: 0,
+      gameHistory: [],
     });
-    return unsubscribe;
-  }, []);
-
-  const signup = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const login = (email, password) => {
@@ -37,16 +43,20 @@ export const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+
+    return unsubscribe;
+  }, []);
+
   const value = {
-    user,
+    currentUser,
     signup,
     login,
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
-};
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}

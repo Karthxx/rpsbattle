@@ -1,6 +1,6 @@
 const Spinner = ({ onChoice }) => {
   return (
-    <div className="sm:max-w-4xl">
+    <div className="sm:max-w-4xl mb-12">
       <div className="flex flex-col justify-center items-center px-4">
         <h1 className="text-white font-bold text-4xl sm:text-7xl text-center my-6 sm:mt-40">
           RpsBattle

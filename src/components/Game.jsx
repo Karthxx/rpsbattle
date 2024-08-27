@@ -19,6 +19,20 @@ const Game = () => {
     setComputerChoice(null);
   };
 
+  const getWinner = () => {
+    const rules = {
+      rock: "scissors",
+      paper: "rock",
+      scissors: "paper",
+    };
+
+    if (userChoice === computerChoice) return "draw";
+    if (rules[userChoice] === computerChoice) return "user";
+    return "computer";
+  };
+
+  const result = getWinner();
+
   return (
     <>
       {!userChoice ? (
@@ -27,6 +41,7 @@ const Game = () => {
         <Result
           userChoice={userChoice}
           computerChoice={computerChoice}
+          result={result}
           onPlayAgain={resetGame}
         />
       )}

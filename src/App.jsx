@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { AuthProvider } from "./components/AuthContext";
-
+import Profile from "./pages/Profile";
 function App() {
   return (
     <AuthProvider>
@@ -18,6 +18,7 @@ function App() {
               <Route path="/" element={<Game />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </section>
 
