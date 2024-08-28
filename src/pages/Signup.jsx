@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
+import { Link } from "react-router-dom";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,10 +56,10 @@ const Signup = () => {
           Signup
         </button>
         <div className="my-3 text-white">
-          <a href="/Login">
+          <Link to="/login">
             {`Already have an Account?`}{" "}
             <span className="text-blue-500 font-bold">Login</span>
-          </a>
+          </Link>
         </div>
       </form>
     </div>
