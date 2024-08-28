@@ -57,9 +57,6 @@ const Navbar = () => {
               <Link to="/login" className="text-lg font-bold text-white mx-2">
                 Login
               </Link>
-              <Link to="/signup" className="text-lg font-bold text-white mx-2">
-                Signup
-              </Link>
             </>
           )}
         </div>

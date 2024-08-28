@@ -21,8 +21,11 @@ const Signup = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <form onSubmit={handleSignup} className="bg-white p-6 rounded">
-        <h2 className="text-2xl mb-4">Signup</h2>
+      <form
+        onSubmit={handleSignup}
+        className="bg-gradient-to-r from-blue-800 to-indigo-900 p-6 rounded"
+      >
+        <h2 className="text-white text-2xl mb-4">Signup</h2>
         {error && <p className="text-red-500">{error}</p>}
         <input
           type="text"
@@ -51,6 +54,12 @@ const Signup = () => {
         >
           Signup
         </button>
+        <div className="my-3 text-white">
+          <a href="/Login">
+            {`Already have an Account?`}{" "}
+            <span className="text-blue-500 font-bold">Login</span>
+          </a>
+        </div>
       </form>
     </div>
   );

@@ -21,8 +21,11 @@ const Login = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <form onSubmit={handleLogin} className="bg-white p-6 rounded">
-        <h2 className="text-2xl mb-4">Login</h2>
+      <form
+        onSubmit={handleLogin}
+        className="bg-gradient-to-r from-blue-800 to-indigo-900 p-6 rounded"
+      >
+        <h2 className="text-white text-2xl mb-4">Login</h2>
         {error && <p className="text-red-500">{error}</p>}
         <input
           type="email"
@@ -44,6 +47,12 @@ const Login = () => {
         >
           Login
         </button>
+        <div className="my-3 text-white">
+          <a href="/Signup">
+            {`Don't have an Account?`}{" "}
+            <span className="text-blue-500 font-bold">Signup</span>
+          </a>
+        </div>
       </form>
     </div>
   );
