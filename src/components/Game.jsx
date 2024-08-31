@@ -10,6 +10,10 @@ const Game = () => {
     setUserChoice(choice);
 
     const choices = ["rock", "paper", "scissors"];
+    if (choice === "mystery") {
+      const mysteryChoice = choices[Math.floor(Math.random() * choices.length)];
+      setUserChoice(mysteryChoice);
+    }
     const randomChoice = choices[Math.floor(Math.random() * choices.length)];
     setComputerChoice(randomChoice);
   };

@@ -80,7 +80,7 @@ const Result = ({ userChoice, computerChoice, onPlayAgain }) => {
   };
 
   return (
-    <div className="sm:max-w-4xl">
+    <div className="sm:max-w-4xl mb-6">
       {showConfetti && (
         <Confetti
           width={window.innerWidth}

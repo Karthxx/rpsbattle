@@ -13,7 +13,7 @@ function App() {
         <div className="bg-gradient-to-r from-blue-800 to-indigo-900">
           <Navbar />
 
-          <section className="h-screen flex justify-center border-t border-t-white border-b border-b-white">
+          <section className="sm:h-screen flex justify-center border-t border-t-white border-b border-b-white">
             <Routes>
               <Route path="/" element={<Game />} />
               <Route path="/login" element={<Login />} />

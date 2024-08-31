@@ -33,6 +33,14 @@ const Spinner = ({ onChoice }) => {
               ✌🏽
             </button>
           </div>
+          <div>
+            <button
+              onClick={() => onChoice("mystery")}
+              className="text-3xl sm:text-4xl w-64 sm:w-40 h-40 sm:h-64 mx-2 sm:mx-6 border bg-gradient-to-r from-blue-800 to-indigo-900 rounded sm:hover:text-6xl"
+            >
+              ❔
+            </button>
+          </div>
         </div>
       </div>
     </div>
