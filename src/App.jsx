@@ -6,9 +6,20 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { AuthProvider } from "./components/AuthContext";
 import Profile from "./pages/Profile";
+import { Helmet } from "react-helmet";
 function App() {
   return (
     <AuthProvider>
+      <Helmet>
+        <title>
+          Play Rock Paper Scissors Online at rpsbattle.io | Free Game
+        </title>
+        <meta
+          name="description"
+          content="Play the classic Rock Paper Scissors game online at rpsbattle.io. Challenge the computer and see if you can win!"
+        />
+        <link rel="canonical" href="https://www.rpsbattle.io/" />
+      </Helmet>
       <Router>
         <div className="bg-gradient-to-r from-blue-800 to-indigo-900">
           <Navbar />
