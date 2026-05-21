@@ -12,7 +12,7 @@ function App() {
     <AuthProvider>
       <Helmet>
         <title>
-          Play Rock Paper Scissors Online at rpsbattle.io | Free Game Online
+          Play Rock Paper Scissors Online at rpsbattle.io | Free Game
         </title>
         <meta
           name="description"
